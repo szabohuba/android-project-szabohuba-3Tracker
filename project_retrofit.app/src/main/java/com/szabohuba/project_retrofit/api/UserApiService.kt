@@ -2,6 +2,7 @@ package com.szabohuba.project_retrofit.api
 
 import com.szabohuba.project_retrofit.api.model.LoginRequestBody
 import com.szabohuba.project_retrofit.api.model.LoginResponse
+import com.szabohuba.project_retrofit.api.model.SettingsResponse
 import com.szabohuba.project_retrofit.api.model.TaskResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -17,4 +18,7 @@ interface UserApiService {
 
     @GET(BackendConstants.GET_TASKS_URL)
     suspend fun getTasks(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<List<TaskResponse>>
+
+    @GET(BackendConstants.GET_SETTINGS_URL)
+    suspend fun getSettings(@Header(BackendConstants.HEADER_TOKEN) token: String): Response<SettingsResponse>
 }

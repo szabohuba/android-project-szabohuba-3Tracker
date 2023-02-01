@@ -2,6 +2,7 @@ package com.szabohuba.project_retrofit.api
 
 import com.szabohuba.project_retrofit.api.model.LoginRequestBody
 import com.szabohuba.project_retrofit.api.model.LoginResponse
+import com.szabohuba.project_retrofit.api.model.SettingsResponse
 import com.szabohuba.project_retrofit.api.model.TaskResponse
 import retrofit2.Response
 
@@ -18,5 +19,9 @@ class ThreeTrackerRepository {
 
     suspend fun getTasks(token: String): Response<List<TaskResponse>> {
         return RetrofitInstance.USER_API_SERVICE.getTasks(token)
+    }
+
+    suspend fun getSettings(token: String): Response<SettingsResponse> {
+        return RetrofitInstance.USER_API_SERVICE.getSettings(token)
     }
 }

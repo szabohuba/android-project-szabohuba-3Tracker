@@ -3,7 +3,15 @@ package com.szabohuba.project_retrofit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.szabohuba.project_retorfit.R
 import com.szabohuba.project_retorfit.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,20 +22,56 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-    }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d(TAG, "onStart() called!")
-    }
+        val navView: BottomNavigationView = binding.navView
+        //val logoAnimation = findViewById<View>(R.id.logo_animation) as AnimationDrawable
+        //logoAnimation.start()
 
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "onPause() called!")
-    }
+        navView.selectedItemId = R.id.navigation_tasks
 
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG, "onStop() called!")
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_activities,
+                R.id.navigation_tasks,
+                R.id.navigation_groups,
+                R.id.navigation_settings
+            )
+        )
+        val navController = findNavController(R.id.nav_host_fragment)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        navView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.loginFragment -> {
+                    nav_view.visibility = View.GONE
+                    navView.visibility = View.GONE
+                }
+                else -> {
+                    nav_view.visibility = View.VISIBLE
+                    navView.visibility = View.VISIBLE
+                }
+            }
+        }
+
+        navView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.navigation_activities -> {
+                    navController.navigate(R.id.activitiesFragment)
+                }
+                R.id.navigation_tasks -> {
+                    navController.navigate(R.id.listFragment)
+                }
+                R.id.navigation_groups -> {
+                    navController.navigate(R.id.groupsFragment)
+                }
+                R.id.navigation_settings -> {
+                    navController.navigate(R.id.settingsFragment)
+                }
+            }
+            true
+        }
+
+
     }
 }

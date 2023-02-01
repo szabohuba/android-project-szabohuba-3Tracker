@@ -13,6 +13,7 @@ object BackendConstants {
      */
     const val LOGIN_URL = "login"
     const val GET_TASKS_URL = "task/getTasks"
+    const val GET_SETTINGS_URL="user"
 
     /**
      * Header values.
