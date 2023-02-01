@@ -47,6 +47,10 @@ class MainActivity : AppCompatActivity() {
                     nav_view.visibility = View.GONE
                     navView.visibility = View.GONE
                 }
+                R.id.splashFragment -> {
+                    nav_view.visibility = View.GONE
+                    navView.visibility = View.GONE
+                }
                 else -> {
                     nav_view.visibility = View.VISIBLE
                     navView.visibility = View.VISIBLE
